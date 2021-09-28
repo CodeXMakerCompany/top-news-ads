@@ -1,4 +1,5 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
 
 //Session
 import { authReducer } from "../reducers/authReducer";
@@ -6,18 +7,21 @@ import { authReducer } from "../reducers/authReducer";
 import { modalReducer } from "../reducers/modalReducer";
 import { snackBarReducer } from "../reducers/snackBarReducer";
 import { settingsReducer } from "../reducers/settingsReducer";
-//Fetching data
-import { tcgPlayerReducer } from "../reducers/tcgPlayerReducer";
+
+//Handling data
+import { articlesReducer } from "../reducers/articlesReducer";
 
 const reducers = combineReducers({
   auth: authReducer,
   modal: modalReducer,
   snackbar: snackBarReducer,
-  tcgPlayer: tcgPlayerReducer,
-  settings: settingsReducer
+  articles: articlesReducer,
+  settings: settingsReducer,
 });
+
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store = createStore(
   reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancer(applyMiddleware(thunk))
 );

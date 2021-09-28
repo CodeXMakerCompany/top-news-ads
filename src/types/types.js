@@ -8,5 +8,6 @@ export const types = {
     cartAddItem: 'Add Item',
     cartRemoveItem: 'Remove Item',
     cartCleanItem: 'Clean items',
-    setSettings: 'Set settings'
+    setSettings: 'Set settings',
+    fetchArticles: 'Get Articles',
 }

@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 //Actions
 import { toggleModal } from "../../actions/modal.actions";
 import { openSnackBar } from "../../actions/snackbar.actions";
-import { getAuth } from "../../actions/tcgPlayer.actions";
 
 //Main components
 import { CategoriesGlobal } from "../global/categories/categories.global";
@@ -31,7 +30,6 @@ export const MainLayout = (props) => {
     // setThemeSelection(content)
     url.includes("tcg") ? setTcg(url.split("/")[4]) : setTcg(false);
 
-    dispatch(getAuth());
   }, [dispatch, tcg]);
 
   const HandleModal = () => {

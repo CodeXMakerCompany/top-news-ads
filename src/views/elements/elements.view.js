@@ -1,31 +1,20 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchArticles } from "../../actions/articles.actions";
 import { ElementsList } from "./components/elements.list";
 
 const ElementsView = () => {
-  const list = [
-    { id:1 , element: "hye codex" },
-    { id:2 , element: "hye codex" },
-    {id:3 , element: "hye codex" },
-    { id:4 ,element: "hye codex" },
-    { id:5 ,element: "hye codex" },
-    { id:6 ,element: "hye codex" },
-    { id:7 ,element: "hye codex" },
-    { id:8 ,element: "hye codex" },
-    { id:9 ,element: "hye codex" },
-    { id:10 ,element: "hye codex" },
-    { id:11 ,element: "hye codex" },
-    { id:12 ,element: "hye codex" },
-    { id:13 ,element: "hye codex" },
-    { id:14 ,element: "hye codex" },
-    { id:15 ,element: "hye codex" },
-    { id:16 ,element: "hye codex" },
-  ];
+
+  const dispatch = useDispatch();
+  const articles = useSelector(state => state.articles.data);
+
   useEffect(() => {
-    console.log("vive");
+    dispatch(fetchArticles());
   }, []);
+
   return (
     <>
-      <ElementsList list={list} />
+      { Array.isArray(articles) ? <ElementsList list={articles} /> : 'no lo es'}
     </>
   );
 };

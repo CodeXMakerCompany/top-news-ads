@@ -26,7 +26,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export const GlobalCard = ({props}) => {
+export const GlobalCard = ({ props }) => {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -38,7 +38,7 @@ export const GlobalCard = ({props}) => {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+            CDX
           </Avatar>
         }
         action={
@@ -46,19 +46,21 @@ export const GlobalCard = ({props}) => {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={props.title}
+        subheader={props.time}
       />
-      <CardMedia
-        component="img"
-        height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
-      />
+
+      <a href={props.link}>
+        <CardMedia
+          component="img"
+          height="194"
+          image={props.image}
+          alt={props.source}
+        />
+      </a>
       <CardContent>
-        
         <Typography variant="body2" color="text.secondary">
-        {props.element}
+          descripciion
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
