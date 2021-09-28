@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Toolbar from "@material-ui/core/Toolbar";
 
 import Box from "@material-ui/core/Box";
 
-import { ThemeProvider } from "styled-components";
-import { themes } from "../../styles/theme";
-
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 //Actions
 import { toggleModal } from "../../actions/modal.actions";
@@ -24,22 +20,19 @@ import { FeaturedGlobal } from "./featured/featured.global";
 import { BestSellerGlobal } from "./bestSeller/bestSeller.global";
 import { OtherProductsGlobal } from "./otherProducts/otherProducts.global";
 import { LatestProductsGlobal } from "./latestProducts/latestProducts.global";
-import { TcgContainer } from "../../components/TCG/tcg-container";
 
 export const MainLayout = (props) => {
   const dispatch = useDispatch();
   const [tcg, setTcg] = useState(false);
-  const { theme } = useSelector((state) => state.settings);
 
   useEffect(() => {
-    console.log(theme);
     // setThemeSelection(selectorData ? selectorData : "light");
     const url = window.location.href;
     // setThemeSelection(content)
     url.includes("tcg") ? setTcg(url.split("/")[4]) : setTcg(false);
 
     dispatch(getAuth());
-  }, [dispatch, tcg, theme]);
+  }, [dispatch, tcg]);
 
   const HandleModal = () => {
     dispatch(toggleModal({ type: "testing" }));
@@ -57,16 +50,7 @@ export const MainLayout = (props) => {
 
   return (
     <>
-      <Toolbar />
-      <ThemeProvider theme={themes[theme]}>
-        <div
-          style={{
-            backgroundColor: themes[theme].pageBackground,
-            transition: "all .5s ease",
-            color: themes[theme].titleColor,
-            height: "100vh",
-          }}
-        >
+        
           <CategoriesGlobal />
           {/* {!tcg && <Banner />} */}
 
@@ -96,7 +80,7 @@ export const MainLayout = (props) => {
             </Box>
           )}
 
-          {tcg && <TcgContainer theme={theme} />}
+          
 
           <div>
             <button onClick={() => HandleModal()}>click me</button>
@@ -104,8 +88,6 @@ export const MainLayout = (props) => {
           <div>
             <button onClick={() => HandleSnackBar()}>snack bar</button>
           </div>
-        </div>
-      </ThemeProvider>
     </>
   );
 };
