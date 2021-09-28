@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import Box from "@material-ui/core/Box";
 
@@ -22,15 +22,8 @@ import { LatestProductsGlobal } from "./latestProducts/latestProducts.global";
 
 export const MainLayout = (props) => {
   const dispatch = useDispatch();
-  const [tcg, setTcg] = useState(false);
 
-  useEffect(() => {
-    // setThemeSelection(selectorData ? selectorData : "light");
-    const url = window.location.href;
-    // setThemeSelection(content)
-    url.includes("tcg") ? setTcg(url.split("/")[4]) : setTcg(false);
-
-  }, [dispatch, tcg]);
+  useEffect(() => {}, [dispatch]);
 
   const HandleModal = () => {
     dispatch(toggleModal({ type: "testing" }));
@@ -48,44 +41,32 @@ export const MainLayout = (props) => {
 
   return (
     <>
-        
-          <CategoriesGlobal />
-          {/* {!tcg && <Banner />} */}
+      <CategoriesGlobal />
+      <br />
 
-          <br />
-          {!tcg && (
-            <Grid container>
-              <Grid item xs={3}>
-                <FeaturedGlobal />
-              </Grid>
-              <Grid item xs={6}>
-                <LatestProductsGlobal />
-                <BestSellerGlobal />
-              </Grid>
-              <Grid item xs={3}>
-                <OtherProductsGlobal />
-              </Grid>
-            </Grid>
-          )}
+      <Grid container>
+        <Grid item xs={3}>
+          <FeaturedGlobal />
+        </Grid>
+        <Grid item xs={6}>
+          <LatestProductsGlobal />
+          <BestSellerGlobal />
+        </Grid>
+        <Grid item xs={3}>
+          <OtherProductsGlobal />
+        </Grid>
+      </Grid>
 
-          {!tcg && (
-            <Box>
-              {props.view === "/" ? (
-                <HomeIndex className="m-0" />
-              ) : (
-                "not found baby"
-              )}
-            </Box>
-          )}
+      <Box>
+        {props.view === "/" ? <HomeIndex className="m-0" /> : "not found baby"}
+      </Box>
 
-          
-
-          <div>
-            <button onClick={() => HandleModal()}>click me</button>
-          </div>
-          <div>
-            <button onClick={() => HandleSnackBar()}>snack bar</button>
-          </div>
+      <div>
+        <button onClick={() => HandleModal()}>click me</button>
+      </div>
+      <div>
+        <button onClick={() => HandleSnackBar()}>snack bar</button>
+      </div>
     </>
   );
 };

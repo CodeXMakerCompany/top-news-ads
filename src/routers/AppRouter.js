@@ -19,7 +19,7 @@ export const AppRouter = () => {
           <Suspense fallback={<SuspenseLoaderGlobal />}>
               <Switch>
                   <Route path="/auth" component={AuthRouter} />
-                  <Route exact path="/" component={ Home } />
+                  <Route exact path="/" component={ Articles } />
                   <Route exact path="/articles/" component={ Articles } />
                   <Route exact path="/article/:name" component={ Articles } />
                   <Redirect to="/auth/login" />
